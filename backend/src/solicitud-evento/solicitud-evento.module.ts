@@ -4,6 +4,6 @@ import { SolicitudEventoService } from './solicitud-evento.service';
 
 @Module({
   controllers: [SolicitudEventoController],
-  providers: [SolicitudEventoService]
+  providers: [SolicitudEventoService],
 })
 export class SolicitudEventoModule {}
