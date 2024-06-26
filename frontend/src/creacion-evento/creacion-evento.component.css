@@ -1,0 +1,44 @@
+.sidebar {
+    background-color: #ffffff;
+    border-right: 1px solid #e0e0e0;
+    height: 100%;
+    position: fixed;
+    top: 0;
+    left: 0;
+    padding: 20px;
+    width: 250px;
+    z-index: 1000;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  }
+  
+  .sidebar-header {
+    margin-bottom: 20px;
+  }
+  
+  .sidebar-header h3 {
+    color: #333333;
+  }
+  
+  .list-group {
+    padding: 0;
+  }
+  
+  .list-group-item {
+    background-color: transparent;
+    border: none;
+    margin-bottom: 5px;
+  }
+  
+  .list-group-item a {
+    color: #333333;
+    font-weight: bold;
+    text-decoration: none;
+    transition: all 0.3s ease;
+    padding: 10px;
+    display: block;
+  }
+  
+  .list-group-item a:hover {
+    background-color: #f0f0f0;
+    color: #007bff;
+  }
