@@ -14,6 +14,8 @@
       <div class="w-100 m-2 text-center justify-content-center">
         <h3>Solicitud creación del evento</h3>
         <div class="row flex-fill">
+
+          <!-- OPCION 1 COLUMNA 1 -->
           <div class="list-inline-item col card">
             <div class="card-title text-center">
               Datos del solicitante
@@ -25,19 +27,83 @@
               </div>
               <div class="card">
                 Apellido
-                <input type="text">
+                <input class="form-control" type="text">
               </div>
               <div class="card">
                 Correo
-                <input type="text">
+                <input class="form-control" type="text">
               </div>
             </div>
           </div>
+
+          <!-- OPCION 2 COLUMNA 2 -->
           <div class="list-inline-item col card">
-            HOLA BUENAS TARDES
+            <div class="card-title text-center">
+              Datos del Evento
+            </div>
+            <div class="card-body text-center">
+              <div class="card align-content-center">
+                Nombre del Evento
+                <input class="form-control" type="text">
+              </div>
+
+              <div class="card collapse-horizontal">
+                <div>
+                  Fecha inicio
+                  <input class="form-control" type="date">
+                </div>
+                <div>
+                  Fecha fin
+                  <input class="form-control" type="date">
+                </div>
+              </div>
+
+              <div class="card collapse-horizontal">
+                <div>
+                  Hora inicio
+                  <input class="form-control" type="text">
+                </div>
+                <div>
+                  Hora fin
+                  <input class="form-control" type="text">
+                </div>
+              </div>
+
+              <div class="card">
+                Lugar
+                <input class="form-control" type="text">
+              </div>
+              <div class="card">
+                Tipo de Evento
+                <select class="" type="text">
+                  <option>Taller</option>
+                  <option>Exposición</option>
+                  <option>Conferencia</option>
+                </select>
+              </div>
+            </div>
           </div>
+
+          <!-- OPCION 3 COLUMNA 3 -->
           <div class="list-inline-item col card">
-            HOLA BUENAS TARDES
+            <table class="table">
+              <thead>
+              <tr>
+                <th scope="col">Servicio</th>
+                <th scope="col">Presupuesto</th>
+              </tr>
+              </thead>
+              <tbody>
+              <tr>
+                <th scope="row">2</th>
+                <td>Jacob</td>
+              </tr>
+              <tr>
+                <th scope="row">3</th>
+                <td colspan="2">Larry the Bird</td>
+              </tr>
+              </tbody>
+            </table>
           </div>
         </div>
       </div>
