@@ -1,53 +1,68 @@
-import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
-import { FormGroup, FormControl, Validators } from '@angular/forms';
-import { Servicio } from '../model/Servicio';
-import { Validator } from '@angular/forms';
+import { FormGroup, FormControl } from '@angular/forms';
+import * as sql from 'mssql';
+import { SolicitudEvento } from '../model/Evento';
+
 @Component({
   selector: 'app-creacion-evento',
   standalone: true,
-  imports: [CommonModule],
+  imports: [],
   templateUrl: './creacion-evento.component.html',
   styleUrl: './creacion-evento.component.css',
 })
 export class CreacionEventoComponent {
   //Variables del controlador web
-  presupuestoTotal: number = 0;
   datos_solicitante: FormGroup = new FormGroup({});
   datos_evento: FormGroup = new FormGroup({});
-  servicios: Servicio[] = [
-    {
-      nombre_servicio: 'Servicio elpp',
-      precio_servicio: 100,
+  private config: sql.config = {
+    server: '146.83.109.246:2083',
+    database: 'usr46_modulo1',
+    user: 'usr46_admin',
+    password: 'admin',
+    options: {
+      encrypt: true,
     },
-    {
-      nombre_servicio: 'Servicio eletesch',
-      precio_servicio: 200,
-    },
-  ];
+  };
+
+  constructor() {}
 
   ngOnInit() {
     this.datos_solicitante = new FormGroup({
-      nombre: new FormControl<string>('', [Validators.required]),
-      apellido: new FormControl<string>('', [Validators.required]),
-      correo: new FormControl<string>('', [Validators.required]),
+      nombre: new FormControl<string>(''),
+      apellido: new FormControl<string>(''),
+      correo: new FormControl<string>(''),
     });
 
     this.datos_evento = new FormGroup({
-      nombre_evento: new FormControl<string>('', [Validators.required]),
-      fecha_inicio: new FormControl<string>('', [Validators.required]),
-      fecha_termino: new FormControl<string>('', [Validators.required]),
-      hora_inicio: new FormControl<string>('', [Validators.required]),
-      hora_termino: new FormControl<string>('', [Validators.required]),
-      lugar_evento: new FormControl<string>('', [Validators.required]),
-      tipo_evento: new FormControl<string>('', [Validators.required]),
+      nombre_evento: new FormControl<string>(''),
+      fecha_inicio: new FormControl<string>(''),
+      fecha_termino: new FormControl<string>(''),
+      hora_inicio: new FormControl<string>(''),
+      hora_termino: new FormControl<string>(''),
+      lugar_evento: new FormControl<string>(''),
+      tipo_evento: new FormControl<string>(''),
     });
+
+    //this.connectToDatabase();
+  }
+  comprobarCrearSolicitud() {
+    if (this.datos_evento.invalid && this.datos_solicitante.invalid) {
+      //esta invalidi el formulario
+    }
   }
 
-  comprobarCrearSolicitud() {
-    if (this.datos_evento.valid && this.datos_solicitante.valid) {
-      console.log('Es valido');
+  private async connectToDatabase() {
+    try {
+      await sql.connect(this.config);
+      console.log('connected');
+    } catch (error) {
+      console.error({ error });
     }
-    console.log('Es invalido');
+  }
+
+  private async crearSolicitud(solicitud: SolicitudEvento) {
+    try {
+      await sql.query('');
+    } catch (error) {}
   }
 }
