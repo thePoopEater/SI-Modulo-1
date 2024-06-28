@@ -20,25 +20,16 @@ import { SolicitudEvento } from '../model/SolicitudEvento';
 })
 export class CreacionEventoComponent {
   //Variables del controlador web
-  presupuestoTotal: number = 0;
   datos_solicitante: FormGroup = new FormGroup({});
   datos_evento: FormGroup = new FormGroup({});
-  servicios: Servicio[] = [
-    {
-      nombre_servicio: 'Servicio elpp',
-      precio_servicio: 100,
-    },
-    {
-      nombre_servicio: 'Servicio eletesch',
-      precio_servicio: 200,
-    },
-  ];
+
+  constructor() {}
 
   ngOnInit() {
     this.datos_solicitante = new FormGroup({
-      nombre: new FormControl<string>('', [Validators.required]),
-      apellido: new FormControl<string>('', [Validators.required]),
-      correo: new FormControl<string>('', [Validators.required]),
+      nombre: new FormControl<string>(''),
+      apellido: new FormControl<string>(''),
+      correo: new FormControl<string>(''),
     });
 
     this.datos_evento = new FormGroup({
@@ -54,8 +45,9 @@ export class CreacionEventoComponent {
       lugar_evento: new FormControl<string>('', [Validators.required]),
       tipo_evento: new FormControl<string>('', [Validators.required]),
     });
-  }
 
+    //this.connectToDatabase();
+  }
   comprobarCrearSolicitud() {
     if (this.datos_solicitante.valid) {
       console.log('Es valido');
