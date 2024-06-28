@@ -3,6 +3,8 @@ import { Component } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { Servicio } from '../model/Servicio';
 import { Validator } from '@angular/forms';
+import * as sql from 'mssql';
+
 @Component({
   selector: 'app-creacion-evento',
   standalone: true,
@@ -25,6 +27,15 @@ export class CreacionEventoComponent {
       precio_servicio: 200,
     },
   ];
+  private config: sql.config = {
+    server: '146.83.109.246:2083',
+    database: 'usr46_modulo1',
+    user: 'usr46_admin',
+    password: 'admin',
+    options: {
+      encrypt: true,
+    },
+  };
 
   ngOnInit() {
     this.datos_solicitante = new FormGroup({
@@ -50,4 +61,21 @@ export class CreacionEventoComponent {
     }
     console.log('Es invalido');
   }
+
+  // async connectToDB() {
+  //   try {
+  //     sql.connect(this.config);
+  //     console.log('se conecto');
+  //   } catch (error) {
+  //     console.error('error conectandose');
+  //   }
+  // }
+
+  // mandarquery() {
+  //   try {
+  //     sql.query('');
+  //   } catch (error) {
+  //     console.error('error query');
+  //   }
+  // }
 }
