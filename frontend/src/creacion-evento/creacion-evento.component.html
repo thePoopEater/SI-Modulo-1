@@ -30,17 +30,17 @@
                   Datos del solicitante
                 </div>
                 <div class="card-body text-center">
-                  <div class="form-group">
+                  <div class="form-group" [formGroup] = "datos_solicitante">
                     Nombre
-                    <input class="form-control" type="text">
+                    <input class="form-control" type="text" formControlName="nombre">
                   </div>
-                  <div class="form-group">
+                  <div class="form-group" [formGroup] = "datos_solicitante">
                     Apellido
-                    <input class="form-control" type="text">
+                    <input class="form-control" type="text" formControlName="apellido">
                   </div>
-                  <div class="form-group">
+                  <div class="form-group" [formGroup] = "datos_solicitante">
                     Correo
-                    <input class="form-control" type="text">
+                    <input class="form-control" type="email" formControlName="correo">
                   </div>
                 </div>
               </div>
@@ -52,33 +52,33 @@
                   Datos del Evento
                 </div>
                 <div class="card-body text-center">
-                  <div class="form-group">
+                  <div class="form-group" [formGroup] = "datos_evento">
                     Nombre del Evento
-                    <input class="form-control" type="text">
+                    <input class="form-control" type="text" formControlName="nombre_evento">
                   </div>
-                  <div class="form-group">
+                  <div class="form-group" [formGroup] = "datos_evento">
                     Fecha inicio
-                    <input class="form-control" type="date">
+                    <input class="form-control" type="date" formControlName="fecha_inicio">
                   </div>
-                  <div class="form-group">
+                  <div class="form-group" [formGroup] = "datos_evento">
                     Fecha fin
-                    <input class="form-control" type="date">
+                    <input class="form-control" type="date"  formControlName="fecha_termino">
                   </div>
-                  <div class="form-group">
+                  <div class="form-group" [formGroup] = "datos_evento">
                     Hora inicio
-                    <input class="form-control" type="text">
+                    <input class="form-control" type="time"  formControlName="hora_inicio">
                   </div>
-                  <div class="form-group">
+                  <div class="form-group" [formGroup] = "datos_evento">
                     Hora fin
-                    <input class="form-control" type="text">
+                    <input class="form-control" type="time" formControlName="hora_termino">
                   </div>
-                  <div class="form-group">
+                  <div class="form-group" [formGroup] = "datos_evento">
                     Lugar
-                    <input class="form-control" type="text">
+                    <input class="form-control" type="text" formControlName="lugar_evento">
                   </div>
-                  <div class="form-group">
+                  <div class="form-group" [formGroup] = "datos_evento">
                     Tipo de Evento
-                    <select class="form-control">
+                    <select class="form-control" formControlName="tipo_evento">
                       <option>Taller</option>
                       <option>Exposición</option>
                       <option>Conferencia</option>
@@ -116,7 +116,7 @@
                     Cantidad de participantes
                     <input class="form-control" type="number">
                   </div>
-                  <button class="btn btn-secondary rounded-5 mt-3">Enviar Solicitud</button>
+                  <button class="btn btn-secondary rounded-5 mt-3" (click)="comprobarCrearSolicitud()">Enviar Solicitud</button>
                 </div>
               </div>
             </div>
