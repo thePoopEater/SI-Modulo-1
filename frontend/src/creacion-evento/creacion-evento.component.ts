@@ -11,6 +11,8 @@ import { Servicio } from '../model/Servicio';
 import { Validator } from '@angular/forms';
 import { Solicitante } from '../model/Solicitante';
 import { SolicitudEvento } from '../model/SolicitudEvento';
+import * as sql from 'mssql';
+
 @Component({
   selector: 'app-creacion-evento',
   standalone: true,
@@ -79,4 +81,21 @@ export class CreacionEventoComponent {
       alert('Esta malo');
     }
   }
+
+  // async connectToDB() {
+  //   try {
+  //     sql.connect(this.config);
+  //     console.log('se conecto');
+  //   } catch (error) {
+  //     console.error('error conectandose');
+  //   }
+  // }
+
+  // mandarquery() {
+  //   try {
+  //     sql.query('');
+  //   } catch (error) {
+  //     console.error('error query');
+  //   }
+  // }
 }
