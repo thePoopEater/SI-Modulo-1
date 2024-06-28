@@ -1,10 +1,11 @@
+import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
-import { FormGroup, FormControl } from '@angular/forms';
+import { FormGroup, FormControl, FormsModule } from '@angular/forms';
 
 @Component({
   selector: 'app-creacion-evento',
   standalone: true,
-  imports: [],
+  imports: [CommonModule],
   templateUrl: './creacion-evento.component.html',
   styleUrl: './creacion-evento.component.css',
 })
@@ -12,6 +13,9 @@ export class CreacionEventoComponent {
   //Variables del controlador web
   datos_solicitante: FormGroup = new FormGroup({});
   datos_evento: FormGroup = new FormGroup({});
+  public servicioPresupuesto: { [key: string]: number } = {
+    'ola': 10,
+  }
 
   ngOnInit() {
     this.datos_solicitante = new FormGroup({
@@ -30,6 +34,10 @@ export class CreacionEventoComponent {
       tipo_evento: new FormControl<string>(''),
     });
   }
+
+  public presupuestoTotal: number=0
+  
+
   comprobarCrearSolicitud() {
     if (this.datos_evento.invalid && this.datos_solicitante.invalid) {
       //esta invalidi el formulario
