@@ -1,5 +1,6 @@
 <div class="container-fluid">
   <div class="row">
+    <!-- Sidebar -->
     <div class="col-md-3">
       <div class="sidebar">
         <div class="sidebar-header">
@@ -11,118 +12,117 @@
         </ul>
       </div>
     </div>
-    <div class="col-md-8">
+    <!-- Contenido Principal --> 
+    <div class="col-md-8 offset-md-3">
       <div class="w-auto">
-        <div class="w-100 text-end m-2 justify-content-end">
-          <button class="rounded">NOTIFICACIONES</button>
-          <button class="rounded">PERFIL</button>
+        <div class="w-100 text-end m-2 justify-content-end button-group">
+          <button class="rounded"><i class="fas fa-bell"></i></button>
+          <button class="rounded"><i class="fas fa-user"></i></button>
         </div>
         <hr>
-        <div class="w-100 m-2 text-center justify-content-center">
+        <div class="w-100 m-2 text-center justify-content-center content-header">
           <h3>Solicitud creación del evento</h3>
           <div class="row flex-fill">
-
             <!-- OPCION 1 COLUMNA 1 -->
-            <div class="list-inline-item col card">
-              <div class="card-title text-center">
-                Datos del solicitante
-              </div>
-              <div class="card-body text-center">
-                <div class="card align-content-center">
-                  Nombre
-                  <input class="form-control" type="text">
+            <div class="col-md-4 mb-4">
+              <div class="card h-100">
+                <div class="card-title text-center">
+                  Datos del solicitante
                 </div>
-                <div class="card">
-                  Apellido
-                  <input class="form-control" type="text">
-                </div>
-                <div class="card">
-                  Correo
-                  <input class="form-control" type="text">
+                <div class="card-body text-center">
+                  <div class="form-group">
+                    Nombre
+                    <input class="form-control" type="text">
+                  </div>
+                  <div class="form-group">
+                    Apellido
+                    <input class="form-control" type="text">
+                  </div>
+                  <div class="form-group">
+                    Correo
+                    <input class="form-control" type="text">
+                  </div>
                 </div>
               </div>
             </div>
-
             <!-- OPCION 2 COLUMNA 2 -->
-            <div class="list-inline-item col card">
-              <div class="card-title text-center">
-                Datos del Evento
-              </div>
-              <div class="card-body text-center">
-                <div class="card align-content-center">
-                  Nombre del Evento
-                  <input class="form-control" type="text">
+            <div class="col-md-4 mb-4">
+              <div class="card h-100">
+                <div class="card-title text-center">
+                  Datos del Evento
                 </div>
-
-                <div class="card collapse-horizontal">
-                  <div>
+                <div class="card-body text-center">
+                  <div class="form-group">
+                    Nombre del Evento
+                    <input class="form-control" type="text">
+                  </div>
+                  <div class="form-group">
                     Fecha inicio
                     <input class="form-control" type="date">
                   </div>
-                  <div>
+                  <div class="form-group">
                     Fecha fin
                     <input class="form-control" type="date">
                   </div>
-                </div>
-
-                <div class="card collapse-horizontal">
-                  <div>
+                  <div class="form-group">
                     Hora inicio
                     <input class="form-control" type="text">
                   </div>
-                  <div>
+                  <div class="form-group">
                     Hora fin
                     <input class="form-control" type="text">
                   </div>
-                </div>
-
-                <div class="card">
-                  Lugar
-                  <input class="form-control" type="text">
-                </div>
-                <div class="card">
-                  Tipo de Evento
-                  <select class="" type="text">
-                    <option>Taller</option>
-                    <option>Exposición</option>
-                    <option>Conferencia</option>
-                  </select>
+                  <div class="form-group">
+                    Lugar
+                    <input class="form-control" type="text">
+                  </div>
+                  <div class="form-group">
+                    Tipo de Evento
+                    <select class="form-control">
+                      <option>Taller</option>
+                      <option>Exposición</option>
+                      <option>Conferencia</option>
+                    </select>
+                  </div>
                 </div>
               </div>
             </div>
-
             <!-- OPCION 3 COLUMNA 3 -->
-            <div class="list-inline-item col card">
-              <table class="table">
-                <thead>
-                <tr>
-                  <th scope="col">Servicio</th>
-                  <th scope="col">Presupuesto</th>
-                </tr>
-                </thead>
-                <tbody>
-                <tr>
-                  <th scope="row">2</th>
-                  <td>Jacob</td>
-                </tr>
-                <tr>
-                  <th scope="row">3</th>
-                  <td colspan="2">Larry the Bird</td>
-                </tr>
-                </tbody>
-              </table>
-
-              <div class="card align-content-center">
-                Presupuesto
-                <input class="form-control" type="number">
+            <div class="col-md-4 mb-4">
+              <div class="card h-100">
+                <div class="card-title text-center">
+                  Servicio y Presupuesto
+                </div>
+                <div class="card-body">
+                  <table class="table">
+                    <thead>
+                      <tr>
+                        <th scope="col">Servicio</th>
+                        <th scope="col">Presupuesto</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr>
+                        <th scope="row">2</th>
+                        <td>Jacob</td>
+                      </tr>
+                      <tr>
+                        <th scope="row">3</th>
+                        <td colspan="2">Larry the Bird</td>
+                      </tr>
+                    </tbody>
+                  </table>
+                  <div class="form-group">
+                    Presupuesto
+                    <input class="form-control" type="number">
+                  </div>
+                  <div class="form-group">
+                    Cantidad de participantes
+                    <input class="form-control" type="number">
+                  </div>
+                  <button class="btn btn-secondary rounded-5 mt-3">Enviar Solicitud</button>
+                </div>
               </div>
-
-              <div class="card align-content-center">
-                Cantidad de participantes
-                <input class="form-control" type="number">
-              </div>
-
-              <button class="btn btn-secondary rounded-5"> Enviar Solicitud </button>
             </div>
           </div>
         </div>
