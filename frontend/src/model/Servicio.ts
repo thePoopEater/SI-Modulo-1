@@ -1,4 +1,9 @@
 export class Servicio {
-  nombre_servicio: string = '';
-  precio_servicio: number = 0;
+  nombre: string;
+  precio: number;
+
+  constructor(nombre: string, precio: number) {
+    this.nombre = nombre;
+    this.precio = precio;
+  }
 }

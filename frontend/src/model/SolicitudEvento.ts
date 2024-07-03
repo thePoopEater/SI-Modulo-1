@@ -1,4 +1,5 @@
 import { Time } from '@angular/common';
+import { Servicio } from '.';
 
 export class SolicitudEvento {
   nombre_evento: string = '';
@@ -7,7 +8,10 @@ export class SolicitudEvento {
   hora_inicio: Time = { hours: 0, minutes: 0 };
   hora_termino: Time = { hours: 0, minutes: 0 };
   lugar_evento: string = '';
-  tipo_evento: string = '';
+  categoria_evento: string = '';
+  cantidad_participantes: number = 0;
+  servicios: Servicio[] = [];
+  presupuesto = 0;
 
   constructor(
     nombre_evento: string,
@@ -16,7 +20,10 @@ export class SolicitudEvento {
     h_inicio: Time,
     h_termino: Time,
     lugar_evento: string,
-    tipo_evento: string
+    categoria_evento: string,
+    cantidad_participantes: number,
+    servicios: Servicio[],
+    presupuesto: number
   ) {
     this.nombre_evento = nombre_evento;
     this.fecha_inicio = f_inicio;
@@ -24,6 +31,9 @@ export class SolicitudEvento {
     this.hora_inicio = h_inicio;
     this.hora_termino = h_termino;
     this.lugar_evento = lugar_evento;
-    this.tipo_evento = tipo_evento;
+    this.categoria_evento = categoria_evento;
+    this.cantidad_participantes = cantidad_participantes;
+    this.servicios = servicios;
+    this.presupuesto = presupuesto;
   }
 }
