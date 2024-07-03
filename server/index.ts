@@ -9,16 +9,19 @@ dotenv.config();
 const app = express();
 
 const corsOptions = {
-  origin: "*",
+  origin: "http://localhost:4200",
+  methods: "GET",
+  allowedHeaders: "Content-Type,Authorization",
   credentials: true,
 };
 
 app.use(bodyParser.urlencoded({ extended: true }));
+app.use(bodyParser.json());
 app.use(cors(corsOptions));
 
 const env = process.env;
 
-const port = env.PORT;
+const port = env.PORT ||3000;
 
 // let connection: mysql.Connection;
 // async () => {
