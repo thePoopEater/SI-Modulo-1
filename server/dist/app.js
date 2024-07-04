@@ -36,12 +36,12 @@ app.post("/crear-solicitud", async (req, res) => {
     try {
         const connection_2 = await mysql_1.default.createConnection(connection);
          console.log("conexión creada");
-         //falta servicios, nombre_solicitante, apellido_solicitante y correo_solicitante
-         const { nombre_evento, fecha_inicio, fecha_termino, hora_inicio, hora_termino, categoria_evento, cantidad_participantes, presupuesto, lugar_evento } = req.body;
+         //falta servicios
+         const { nombre_evento, fecha_inicio, fecha_termino, hora_inicio, hora_termino, categoria_evento, cantidad_participantes, presupuesto, lugar_evento, nombre_solicitante, apellido_solicitante, correo } = req.body;
          //CAMBIAR TABLA y cambiar .env
-         const query = "INSERT INTO evento (nombre_evento, fecha_inicio, fecha_termino,hora_inicio, hora_termino, categoria_evento, cantidad_participantes,presupuesto, lugar_evento)VALUES (?, ?, ?, ?, ?, ?, ?, ?,?)";
+         const query = "INSERT INTO evento (nombre_evento, fecha_inicio, fecha_termino,hora_inicio, hora_termino, categoria_evento, cantidad_participantes,presupuesto, lugar_evento, nombre_solicitante,apellido_solicitante, correo )VALUES (?, ?, ?, ?, ?, ?, ?, ?,?,?,?,?)";
          const [result] = await connection_2.execute(query, [
-            nombre_evento,fecha_inicio,fecha_termino,hora_inicio,hora_termino,categoria_evento,cantidad_participantes,presupuesto, lugar_evento
+            nombre_evento,fecha_inicio,fecha_termino,hora_inicio,hora_termino,categoria_evento,cantidad_participantes,presupuesto, lugar_evento, nombre_solicitante, apellido_solicitante, correo 
         ]);
     } catch (e) {
         console.error(e);

@@ -35,8 +35,8 @@ export class CreacionEventoComponent {
 
   ngOnInit() {
     this.datos_solicitante = new FormGroup({
-      nombre: new FormControl<string>(''),
-      apellido: new FormControl<string>(''),
+      nombre_solicitante: new FormControl<string>(''),
+      apellido_solicitante: new FormControl<string>(''),
       correo: new FormControl<string>(''),
     });
 
@@ -67,9 +67,9 @@ export class CreacionEventoComponent {
       console.log('Es valido');
       // Campos de datos solicitante
       const nombre_solicitante =
-        this.datos_solicitante.controls['nombre'].value;
+        this.datos_solicitante.controls['nombre_solicitante'].value;
       const apellido_solicitante =
-        this.datos_solicitante.controls['apellido'].value;
+        this.datos_solicitante.controls['apellido_solicitante'].value;
       const correo = this.datos_solicitante.controls['correo'].value;
       // Campos de solicitud evento
       const nombre_evento = this.datos_evento.controls['nombre_evento'].value;
