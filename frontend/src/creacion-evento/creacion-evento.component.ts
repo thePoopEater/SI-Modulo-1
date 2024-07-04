@@ -26,9 +26,8 @@ export class CreacionEventoComponent {
   datos_solicitante: FormGroup = new FormGroup({});
   datos_evento: FormGroup = new FormGroup({});
   servicios: Servicio[] = [
-    // new Servicio('Comer caca', 293298),
-    // new Servicio('Luces', 38948),
-    // new Servicio('Catering', 345000),
+     new Servicio('Luces', 38948),
+     new Servicio('Catering', 345000),
     // descomentar para ver servicios
   ];
 

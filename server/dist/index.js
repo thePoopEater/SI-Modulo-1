@@ -11,7 +11,7 @@ dotenv_1.default.config();
 const app = (0, express_1.default)();
 const corsOptions = {
     origin: "http://localhost:4200",
-    methods: "GET",
+    methods: "POST",
     allowedHeaders: "Content-Type,Authorization",
     credentials: true,
 };
@@ -41,7 +41,7 @@ app.get("/", (req, res) => {
 });
 app.post("/crear-solicitud", (req, res) => {
     console.log(req.body);
-    res.send("caca");
+    res.json({ requestBody: req.body });
 });
 app
     .listen(port, () => {

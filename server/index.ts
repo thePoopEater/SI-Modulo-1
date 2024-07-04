@@ -10,7 +10,7 @@ const app = express();
 
 const corsOptions = {
   origin: "http://localhost:4200",
-  methods: "GET",
+  methods: "POST",
   allowedHeaders: "Content-Type,Authorization",
   credentials: true,
 };
@@ -21,7 +21,7 @@ app.use(cors(corsOptions));
 
 const env = process.env;
 
-const port = env.PORT ||3000;
+const port = env.PORT;
 
 // let connection: mysql.Connection;
 // async () => {
@@ -47,8 +47,7 @@ app.get("/", (req, res) => {
 
 app.post("/crear-solicitud", (req, res) => {
   console.log(req.body);
-
-  res.send("caca");
+  res.json({requestBody: req.body})
 });
 
 app
