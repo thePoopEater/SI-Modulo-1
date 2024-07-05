@@ -7,16 +7,17 @@ import {
   FormsModule,
   ReactiveFormsModule,
 } from '@angular/forms';
-import { Servicio } from '../model/Servicio';
 import { Validator } from '@angular/forms';
-import { Solicitante } from '../model/Solicitante';
-import { SolicitudEvento } from '../model/SolicitudEvento';
+import { HttpClientModule } from '@angular/common/http';
+import { HttpClient } from '@angular/common/http';
 import * as sql from 'mssql';
+import { Servicio, Solicitante, SolicitudEvento } from '../model';
+import { environment } from '../environments/environment';
 
 @Component({
   selector: 'app-creacion-evento',
   standalone: true,
-  imports: [CommonModule, FormsModule, ReactiveFormsModule],
+  imports: [CommonModule, FormsModule, ReactiveFormsModule, HttpClientModule],
   templateUrl: './creacion-evento.component.html',
   styleUrl: './creacion-evento.component.css',
 })
@@ -24,13 +25,18 @@ export class CreacionEventoComponent {
   //Variables del controlador web
   datos_solicitante: FormGroup = new FormGroup({});
   datos_evento: FormGroup = new FormGroup({});
+  servicios: Servicio[] = [
+    new Servicio('Luces', 38948),
+    new Servicio('Catering', 345000),
+    // descomentar para ver servicios
+  ];
 
-  constructor() {}
+  constructor(private http: HttpClient) {}
 
   ngOnInit() {
     this.datos_solicitante = new FormGroup({
-      nombre: new FormControl<string>(''),
-      apellido: new FormControl<string>(''),
+      nombre_solicitante: new FormControl<string>(''),
+      apellido_solicitante: new FormControl<string>(''),
       correo: new FormControl<string>(''),
     });
 
@@ -45,17 +51,25 @@ export class CreacionEventoComponent {
         Validators.required,
       ]),
       lugar_evento: new FormControl<string>('', [Validators.required]),
-      tipo_evento: new FormControl<string>('', [Validators.required]),
+      categoria_evento: new FormControl<string>('', [Validators.required]),
+      cantidad_participantes: new FormControl<number>(0, [
+        Validators.required,
+        Validators.min(0),
+      ]),
+      presupuesto: new FormControl<number>(0, [
+        Validators.required,
+        Validators.min(0),
+      ]),
     });
-
-    //this.connectToDatabase();
   }
   comprobarCrearSolicitud() {
     if (this.datos_solicitante.valid) {
       console.log('Es valido');
       // Campos de datos solicitante
-      const nombre = this.datos_solicitante.controls['nombre'].value;
-      const apellido = this.datos_solicitante.controls['apellido'].value;
+      const nombre_solicitante =
+        this.datos_solicitante.controls['nombre_solicitante'].value;
+      const apellido_solicitante =
+        this.datos_solicitante.controls['apellido_solicitante'].value;
       const correo = this.datos_solicitante.controls['correo'].value;
       // Campos de solicitud evento
       const nombre_evento = this.datos_evento.controls['nombre_evento'].value;
@@ -64,38 +78,64 @@ export class CreacionEventoComponent {
       const hora_inicio = this.datos_evento.controls['hora_inicio'].value;
       const hora_termino = this.datos_evento.controls['hora_termino'].value;
       const lugar_evento = this.datos_evento.controls['lugar_evento'].value;
-      const tipo_evento = this.datos_evento.controls['tipo_evento'].value;
+      const categoria_evento =
+        this.datos_evento.controls['categoria_evento'].value;
+      let servicios: string = JSON.stringify(this.servicios);
+      const cantidad_participantes =
+        this.datos_evento.controls['cantidad_participantes'].value;
+      const presupuesto = this.datos_evento.controls['presupuesto'].value;
 
-      const datos_solicitante = new Solicitante(nombre, apellido, correo);
-      const solicitud_evento = new SolicitudEvento(
+      const datos_solicitante = new Solicitante(
+        nombre_solicitante,
+        apellido_solicitante,
+        correo
+      );
+      const datos_solicitud_evento = new SolicitudEvento(
         nombre_evento,
         fecha_inicio,
         fecha_termino,
         hora_inicio,
         hora_termino,
         lugar_evento,
-        tipo_evento
+        categoria_evento,
+        cantidad_participantes,
+        servicios,
+        presupuesto
       );
+
+      const solicitud_evento: POSTDTO = {
+        ...datos_solicitante,
+        ...datos_solicitud_evento,
+      };
+
       alert('Esta bueno');
+
+      let postURL = `${environment.URL}/crear-solicitud`;
+      // console.log({ postURL, solicitud_evento });
+
+      let result;
+      this.http.post<any>(postURL, solicitud_evento).subscribe((res) => {
+        result = res;
+      });
+      console.log(result);
     } else {
       alert('Esta malo');
     }
   }
+}
 
-  // async connectToDB() {
-  //   try {
-  //     sql.connect(this.config);
-  //     console.log('se conecto');
-  //   } catch (error) {
-  //     console.error('error conectandose');
-  //   }
-  // }
-
-  // mandarquery() {
-  //   try {
-  //     sql.query('');
-  //   } catch (error) {
-  //     console.error('error query');
-  //   }
-  // }
+export interface POSTDTO {
+  nombre_solicitante: string;
+  apellido_solicitante: string;
+  correo_electronico: string;
+  nombre_evento: string;
+  cantidad_participantes: number;
+  fecha_inicio: Date;
+  fecha_termino: Date;
+  hora_inicio: Time;
+  hora_termino: Time;
+  lugar_evento: string;
+  categoria_evento: string;
+  servicios_precios: string;
+  presupuesto_total: number;
 }

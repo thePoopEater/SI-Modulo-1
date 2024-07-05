@@ -32,17 +32,29 @@
               <div class="card h-100">
                 <div class="card-title text-center">Datos del solicitante</div>
                 <div class="card-body text-center">
-                  <div class="form-group" [formGroup] = "datos_solicitante">
+                  <div class="form-group" [formGroup]="datos_solicitante">
                     Nombre
-                    <input class="form-control" type="text" formControlName="nombre">
+                    <input
+                      class="form-control"
+                      type="text"
+                      formControlName="nombre_solicitante"
+                    />
                   </div>
-                  <div class="form-group" [formGroup] = "datos_solicitante">
+                  <div class="form-group" [formGroup]="datos_solicitante">
                     Apellido
-                    <input class="form-control" type="text" formControlName="apellido">
+                    <input
+                      class="form-control"
+                      type="text"
+                      formControlName="apellido_solicitante"
+                    />
                   </div>
-                  <div class="form-group" [formGroup] = "datos_solicitante">
+                  <div class="form-group" [formGroup]="datos_solicitante">
                     Correo
-                    <input class="form-control" type="email" formControlName="correo">
+                    <input
+                      class="form-control"
+                      type="email"
+                      formControlName="correo"
+                    />
                   </div>
                 </div>
               </div>
@@ -52,33 +64,60 @@
               <div class="card h-100">
                 <div class="card-title text-center">Datos del Evento</div>
                 <div class="card-body text-center">
-                  <div class="form-group" [formGroup] = "datos_evento">
+                  <div class="form-group" [formGroup]="datos_evento">
                     Nombre del Evento
-                    <input class="form-control" type="text" formControlName="nombre_evento">
+                    <input
+                      class="form-control"
+                      type="text"
+                      formControlName="nombre_evento"
+                    />
                   </div>
-                  <div class="form-group" [formGroup] = "datos_evento">
+                  <div class="form-group" [formGroup]="datos_evento">
                     Fecha inicio
-                    <input class="form-control" type="date" formControlName="fecha_inicio">
+                    <input
+                      class="form-control"
+                      type="date"
+                      formControlName="fecha_inicio"
+                    />
                   </div>
-                  <div class="form-group" [formGroup] = "datos_evento">
+                  <div class="form-group" [formGroup]="datos_evento">
                     Fecha fin
-                    <input class="form-control" type="date"  formControlName="fecha_termino">
+                    <input
+                      class="form-control"
+                      type="date"
+                      formControlName="fecha_termino"
+                    />
                   </div>
-                  <div class="form-group" [formGroup] = "datos_evento">
+                  <div class="form-group" [formGroup]="datos_evento">
                     Hora inicio
-                    <input class="form-control" type="time"  formControlName="hora_inicio">
+                    <input
+                      class="form-control"
+                      type="time"
+                      formControlName="hora_inicio"
+                    />
                   </div>
-                  <div class="form-group" [formGroup] = "datos_evento">
+                  <div class="form-group" [formGroup]="datos_evento">
                     Hora fin
-                    <input class="form-control" type="time" formControlName="hora_termino">
+                    <input
+                      class="form-control"
+                      type="time"
+                      formControlName="hora_termino"
+                    />
                   </div>
-                  <div class="form-group" [formGroup] = "datos_evento">
+                  <div class="form-group" [formGroup]="datos_evento">
                     Lugar
-                    <input class="form-control" type="text" formControlName="lugar_evento">
+                    <input
+                      class="form-control"
+                      type="text"
+                      formControlName="lugar_evento"
+                    />
                   </div>
-                  <div class="form-group" [formGroup] = "datos_evento">
-                    Tipo de Evento
-                    <select class="form-control" formControlName="tipo_evento">
+                  <div class="form-group" [formGroup]="datos_evento">
+                    Categoría del Evento
+                    <select
+                      class="form-control"
+                      formControlName="categoria_evento"
+                    >
                       <option>Taller</option>
                       <option>Exposición</option>
                       <option>Conferencia</option>
@@ -99,22 +138,44 @@
                         <th scope="col">Presupuesto</th>
                       </tr>
                     </thead>
-                    <tbody *NgFor="let servicio of this.servicios">
+                    @for (servicio of servicios; track servicio.nombre) {
+                    <tbody>
                       <tr>
-                        <td>{{ servicio.nombre_servicio }}</td>
-                        <th scope="row">{{ servicio.precio_servicio }}</th>
+                        <td>{{ servicio.nombre }}</td>
+                        <th scope="row">{{ servicio.precio }}</th>
+                        <!-- no esta puesto para recuperar los servicios -->
                       </tr>
                     </tbody>
+                    } @empty {
+                    <tbody class="text-center">
+                      <th colspan="2" class="p-3">
+                        No hay servicios registrados
+                      </th>
+                    </tbody>
+                    }
                   </table>
-                  <div class="form-group">
+                  <div class="form-group" [formGroup]="datos_evento">
                     Presupuesto
-                    <input class="form-control" type="number" />
+                    <input
+                      class="form-control"
+                      type="number"
+                      formControlName="presupuesto"
+                    />
                   </div>
-                  <div class="form-group">
+                  <div class="form-group" [formGroup]="datos_evento">
                     Cantidad de participantes
-                    <input class="form-control" type="number" />
+                    <input
+                      class="form-control"
+                      type="number"
+                      formControlName="cantidad_participantes"
+                    />
                   </div>
-                  <button class="btn btn-secondary rounded-5 mt-3" (click)="comprobarCrearSolicitud()">Enviar Solicitud</button>
+                  <button
+                    class="btn btn-secondary rounded-5 mt-3"
+                    (click)="comprobarCrearSolicitud()"
+                  >
+                    Enviar Solicitud
+                  </button>
                 </div>
               </div>
             </div>
