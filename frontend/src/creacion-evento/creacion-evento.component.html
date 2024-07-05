@@ -1,0 +1,187 @@
+<div class="container-fluid">
+  <div class="row">
+    <!-- Sidebar -->
+    <div class="col-md-3">
+      <div class="sidebar">
+        <div class="sidebar-header">
+          <h3>Menú</h3>
+        </div>
+        <ul class="list-group">
+          <li class="list-group-item"><a class="nav-link">Inicio</a></li>
+          <li class="list-group-item">
+            <a class="nav-link">Creación de evento</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+    <!-- Contenido Principal -->
+    <div class="col-md-8 offset-md-3">
+      <div class="w-auto">
+        <div class="w-100 text-end m-2 justify-content-end button-group">
+          <button class="rounded"><i class="fas fa-bell"></i></button>
+          <button class="rounded"><i class="fas fa-user"></i></button>
+        </div>
+        <hr />
+        <div
+          class="w-100 m-2 text-center justify-content-center content-header"
+        >
+          <h3>Solicitud creación del evento</h3>
+          <div class="row flex-fill">
+            <!-- OPCION 1 COLUMNA 1 -->
+            <div class="col-md-4 mb-4">
+              <div class="card h-100">
+                <div class="card-title text-center">Datos del solicitante</div>
+                <div class="card-body text-center">
+                  <div class="form-group" [formGroup]="datos_solicitante">
+                    Nombre
+                    <input
+                      class="form-control"
+                      type="text"
+                      formControlName="nombre_solicitante"
+                    />
+                  </div>
+                  <div class="form-group" [formGroup]="datos_solicitante">
+                    Apellido
+                    <input
+                      class="form-control"
+                      type="text"
+                      formControlName="apellido_solicitante"
+                    />
+                  </div>
+                  <div class="form-group" [formGroup]="datos_solicitante">
+                    Correo
+                    <input
+                      class="form-control"
+                      type="email"
+                      formControlName="correo"
+                    />
+                  </div>
+                </div>
+              </div>
+            </div>
+            <!-- OPCION 2 COLUMNA 2 -->
+            <div class="col-md-4 mb-4">
+              <div class="card h-100">
+                <div class="card-title text-center">Datos del Evento</div>
+                <div class="card-body text-center">
+                  <div class="form-group" [formGroup]="datos_evento">
+                    Nombre del Evento
+                    <input
+                      class="form-control"
+                      type="text"
+                      formControlName="nombre_evento"
+                    />
+                  </div>
+                  <div class="form-group" [formGroup]="datos_evento">
+                    Fecha inicio
+                    <input
+                      class="form-control"
+                      type="date"
+                      formControlName="fecha_inicio"
+                    />
+                  </div>
+                  <div class="form-group" [formGroup]="datos_evento">
+                    Fecha fin
+                    <input
+                      class="form-control"
+                      type="date"
+                      formControlName="fecha_termino"
+                    />
+                  </div>
+                  <div class="form-group" [formGroup]="datos_evento">
+                    Hora inicio
+                    <input
+                      class="form-control"
+                      type="time"
+                      formControlName="hora_inicio"
+                    />
+                  </div>
+                  <div class="form-group" [formGroup]="datos_evento">
+                    Hora fin
+                    <input
+                      class="form-control"
+                      type="time"
+                      formControlName="hora_termino"
+                    />
+                  </div>
+                  <div class="form-group" [formGroup]="datos_evento">
+                    Lugar
+                    <input
+                      class="form-control"
+                      type="text"
+                      formControlName="lugar_evento"
+                    />
+                  </div>
+                  <div class="form-group" [formGroup]="datos_evento">
+                    Categoría del Evento
+                    <select
+                      class="form-control"
+                      formControlName="categoria_evento"
+                    >
+                      <option>Taller</option>
+                      <option>Exposición</option>
+                      <option>Conferencia</option>
+                    </select>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <!-- OPCION 3 COLUMNA 3 -->
+            <div class="col-md-4 mb-4">
+              <div class="card h-100">
+                <div class="card-title text-center">Servicio y Presupuesto</div>
+                <div class="card-body">
+                  <table class="table">
+                    <thead>
+                      <tr>
+                        <th scope="col">Servicio</th>
+                        <th scope="col">Presupuesto</th>
+                      </tr>
+                    </thead>
+                    @for (servicio of servicios; track servicio.nombre) {
+                    <tbody>
+                      <tr>
+                        <td>{{ servicio.nombre }}</td>
+                        <th scope="row">{{ servicio.precio }}</th>
+                        <!-- no esta puesto para recuperar los servicios -->
+                      </tr>
+                    </tbody>
+                    } @empty {
+                    <tbody class="text-center">
+                      <th colspan="2" class="p-3">
+                        No hay servicios registrados
+                      </th>
+                    </tbody>
+                    }
+                  </table>
+                  <div class="form-group" [formGroup]="datos_evento">
+                    Presupuesto
+                    <input
+                      class="form-control"
+                      type="number"
+                      formControlName="presupuesto"
+                    />
+                  </div>
+                  <div class="form-group" [formGroup]="datos_evento">
+                    Cantidad de participantes
+                    <input
+                      class="form-control"
+                      type="number"
+                      formControlName="cantidad_participantes"
+                    />
+                  </div>
+                  <button
+                    class="btn btn-secondary rounded-5 mt-3"
+                    (click)="comprobarCrearSolicitud()"
+                  >
+                    Enviar Solicitud
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
