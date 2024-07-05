@@ -26,8 +26,8 @@ export class CreacionEventoComponent {
   datos_solicitante: FormGroup = new FormGroup({});
   datos_evento: FormGroup = new FormGroup({});
   servicios: Servicio[] = [
-     new Servicio('Luces', 38948),
-     new Servicio('Catering', 345000),
+    new Servicio('Luces', 38948),
+    new Servicio('Catering', 345000),
     // descomentar para ver servicios
   ];
 
@@ -80,7 +80,7 @@ export class CreacionEventoComponent {
       const lugar_evento = this.datos_evento.controls['lugar_evento'].value;
       const categoria_evento =
         this.datos_evento.controls['categoria_evento'].value;
-      let servicios: Servicio[] = [];
+      let servicios: string = JSON.stringify(this.servicios);
       const cantidad_participantes =
         this.datos_evento.controls['cantidad_participantes'].value;
       const presupuesto = this.datos_evento.controls['presupuesto'].value;
@@ -103,39 +103,39 @@ export class CreacionEventoComponent {
         presupuesto
       );
 
-      const solicitud_evento = {
+      const solicitud_evento: POSTDTO = {
         ...datos_solicitante,
         ...datos_solicitud_evento,
       };
 
       alert('Esta bueno');
 
-      let postURL = `${environment.URL}crear-solicitud`;
-      console.log({ postURL, solicitud_evento });
+      let postURL = `${environment.URL}/crear-solicitud`;
+      // console.log({ postURL, solicitud_evento });
 
       let result;
       this.http.post<any>(postURL, solicitud_evento).subscribe((res) => {
         result = res;
       });
+      console.log(result);
     } else {
       alert('Esta malo');
     }
   }
+}
 
-  // async connectToDB() {
-  //   try {
-  //     sql.connect(this.config);
-  //     console.log('se conecto');
-  //   } catch (error) {
-  //     console.error('error conectandose');
-  //   }
-  // }
-
-  // mandarquery() {
-  //   try {
-  //     sql.query('');
-  //   } catch (error) {
-  //     console.error('error query');
-  //   }
-  // }
+export interface POSTDTO {
+  nombre_solicitante: string;
+  apellido_solicitante: string;
+  correo_electronico: string;
+  nombre_evento: string;
+  cantidad_participantes: number;
+  fecha_inicio: Date;
+  fecha_termino: Date;
+  hora_inicio: Time;
+  hora_termino: Time;
+  lugar_evento: string;
+  categoria_evento: string;
+  servicios_precios: string;
+  presupuesto_total: number;
 }

@@ -1,10 +1,11 @@
 {
   "name": "server",
   "version": "1.0.0",
-  "main": "index.js",
+  "main": "index.ts",
   "scripts": {
-    "start": "npx tsc && node dist/app.js",
-    "dev": "nodemon - exec 'ts-node' index.ts",
+    "build": "npx tsc",
+    "start:prod": "npx tsc && node dist/index.js",
+    "dev": "nodemon - exec 'ts-node' -T index.ts",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "",

@@ -10,8 +10,8 @@ export class SolicitudEvento {
   lugar_evento: string = '';
   categoria_evento: string = '';
   cantidad_participantes: number = 0;
-  servicios: Servicio[] = [];
-  presupuesto = 0;
+  servicios_precios: string = '';
+  presupuesto_total = 0;
 
   constructor(
     nombre_evento: string,
@@ -22,7 +22,7 @@ export class SolicitudEvento {
     lugar_evento: string,
     categoria_evento: string,
     cantidad_participantes: number,
-    servicios: Servicio[],
+    servicios: string,
     presupuesto: number
   ) {
     this.nombre_evento = nombre_evento;
@@ -33,7 +33,7 @@ export class SolicitudEvento {
     this.lugar_evento = lugar_evento;
     this.categoria_evento = categoria_evento;
     this.cantidad_participantes = cantidad_participantes;
-    this.servicios = servicios;
-    this.presupuesto = presupuesto;
+    this.servicios_precios = servicios;
+    this.presupuesto_total = presupuesto;
   }
 }
